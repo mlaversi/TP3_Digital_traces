@@ -1,4 +1,4 @@
-#Google Trends Part 1 : OK
+#Google Trends Part : OK
 
 import streamlit as st
 from pytrends.request import TrendReq
@@ -15,7 +15,7 @@ default2 = "Spider man"
 pytrends = TrendReq(hl='en-US', tz=360)
 
 kw_list = ["Mario", 'BMW']
-pytrends.build_payload(kw_list, cat=0, timeframe='today 5-y', geo='', gprop='')
+pytrends.build_payload(kw_list, cat=0, timeframe='today 3-m', geo='', gprop='')
 df = pytrends.interest_over_time()
 df = df.drop(labels=['isPartial'], axis='columns')
 
@@ -26,7 +26,7 @@ with st.sidebar:
     user_input2 = st.text_input("Confrontation 2 : ", default2)
     if st.button("Press for the graph and the new confrontation"):
         kw_list = [user_input1, user_input2]
-        pytrends.build_payload(kw_list, cat=0, timeframe='today 5-y', geo='', gprop='')
+        pytrends.build_payload(kw_list, cat=0, timeframe='today 3-m', geo='', gprop='')
         df = pytrends.interest_over_time()
         df = df.drop(labels=['isPartial'], axis='columns')
 
